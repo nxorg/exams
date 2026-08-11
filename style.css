@@ -285,8 +285,6 @@ header p {
     font-weight: 600;
     letter-spacing: -0.02em;
     color: var(--text-primary);
-    display: flex;
-    align-items: center;
 }
 
 .pin-btn {
@@ -294,7 +292,6 @@ header p {
     border: 1px solid var(--border);
     color: var(--text-secondary);
     cursor: pointer;
-    margin-left: auto; /* Push it to the far right of the header */
     padding: 0.4rem;
     border-radius: 8px;
     transition: all 0.2s ease;
