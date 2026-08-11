@@ -104,11 +104,17 @@ const renderExams = () => {
         return !timeA.isPast ? -1 : 1;
     };
 
+    const stateFilterValue = document.getElementById('state-filter').value;
+    
     // Filter logic
     const filteredExams = exams.filter(exam => {
         const matchesSearch = exam.name.toLowerCase().includes(searchQuery);
         const matchesCategory = categoryFilter === 'all' || exam.type === categoryFilter;
-        return matchesSearch && matchesCategory;
+        let matchesState = true;
+        if (categoryFilter === 'state' && stateFilterValue !== 'all') {
+            matchesState = exam.stateName === stateFilterValue;
+        }
+        return matchesSearch && matchesCategory && matchesState;
     });
 
     // Sort ALL filtered exams in a single list
@@ -175,12 +181,36 @@ document.addEventListener('DOMContentLoaded', async () => {
         return; // Stop initialization if data fails to load
     }
 
+    // Populate state filter dynamically
+    const stateFilterSelect = document.getElementById('state-filter');
+    const stateFilterWrapper = document.getElementById('state-filter-wrapper');
+    const categoryFilterSelect = document.getElementById('category-filter');
+
+    const uniqueStates = [...new Set(exams.filter(e => e.type === 'state' && e.stateName).map(e => e.stateName))];
+    uniqueStates.sort().forEach(stateName => {
+        const option = document.createElement('option');
+        option.value = stateName;
+        option.textContent = stateName;
+        stateFilterSelect.appendChild(option);
+    });
+
     // Initial Render
     renderExams();
     
     // Setup Event Listeners for search and filter
     document.getElementById('search-input').addEventListener('input', renderExams);
-    document.getElementById('category-filter').addEventListener('change', renderExams);
+    
+    categoryFilterSelect.addEventListener('change', (e) => {
+        if (e.target.value === 'state') {
+            stateFilterWrapper.style.display = 'block';
+        } else {
+            stateFilterWrapper.style.display = 'none';
+            stateFilterSelect.value = 'all'; // reset state filter
+        }
+        renderExams();
+    });
+
+    stateFilterSelect.addEventListener('change', renderExams);
     
     // View toggles
     const gridBtn = document.getElementById('view-grid');
