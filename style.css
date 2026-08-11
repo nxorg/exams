@@ -154,36 +154,36 @@ header p {
     color: var(--text-secondary);
 }
 
-#category-filter {
-    appearance: none;
+/* Filter Chips (Multi-Select) */
+.filter-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.filter-chip {
     background: transparent;
-    border: none;
-    padding: 0.875rem 2.5rem 0.875rem 1rem;
-    color: var(--text-primary);
-    font-size: 0.875rem;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 0.4rem 1rem;
+    color: var(--text-secondary);
+    font-size: 0.8rem;
     font-family: inherit;
-    outline: none;
     cursor: pointer;
-    width: 100%;
+    transition: all 0.2s ease;
 }
 
-.filter-wrapper::after {
-    content: '';
-    position: absolute;
-    right: 1rem;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 0;
-    height: 0;
-    border-left: 4px solid transparent;
-    border-right: 4px solid transparent;
-    border-top: 5px solid var(--text-secondary);
-    pointer-events: none;
-}
-
-#category-filter option {
-    background-color: var(--bg-dark);
+.filter-chip:hover {
+    border-color: var(--border-hover);
     color: var(--text-primary);
+}
+
+.filter-chip.active {
+    background: var(--text-primary);
+    color: var(--bg-dark);
+    border-color: var(--text-primary);
+    font-weight: 500;
 }
 
 /* View Toggle Buttons */
