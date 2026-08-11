@@ -290,25 +290,29 @@ header p {
 }
 
 .pin-btn {
-    background: none;
-    border: none;
-    color: var(--border);
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
     cursor: pointer;
-    margin-left: 0.5rem;
-    padding: 0.2rem;
-    border-radius: 4px;
+    margin-left: auto; /* Push it to the far right of the header */
+    padding: 0.4rem;
+    border-radius: 8px;
     transition: all 0.2s ease;
     display: inline-flex;
     align-items: center;
+    justify-content: center;
 }
 
 .pin-btn:hover {
-    color: var(--text-secondary);
-    background: var(--bg-input);
+    color: var(--text-primary);
+    border-color: var(--text-secondary);
+    background: var(--bg-card-hover);
 }
 
 .pin-btn.pinned {
     color: var(--accent-blue);
+    background: rgba(0, 112, 243, 0.1);
+    border-color: rgba(0, 112, 243, 0.3);
 }
 
 .exam-card.pinned {
