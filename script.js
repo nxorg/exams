@@ -64,8 +64,13 @@ const generateExamsHTML = (examsList) => {
 
         const isPinned = pinnedExams.has(exam.id);
         const pinClass = isPinned ? 'pinned' : '';
+        // Unpinned: Outline icon. Pinned: Filled icon.
+        const pinIconSVG = isPinned 
+            ? `<path d="M16 12V4h1V2H7v2h1v8l-2 2v2h5.2v6h1.6v-6H18v-2l-2-2z"/>`
+            : `<path d="M16 12V4h1V2H7v2h1v8l-2 2v2h5.2v6h1.6v-6H18v-2l-2-2zm-6.8-2l1.2-1.2V4h3.2v6.8l1.2 1.2v.4H8.4v-.4z"/>`;
+            
         const pinIcon = `<button class="pin-btn ${pinClass}" onclick="togglePin('${exam.id}')" title="${isPinned ? 'Unpin' : 'Pin to top'}">
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M16 12V4h1V2H7v2h1v8l-2 2v2h5.2v6h1.6v-6H18v-2l-2-2z"/></svg>
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">${pinIconSVG}</svg>
         </button>`;
 
         return `
