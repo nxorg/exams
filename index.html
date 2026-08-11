@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="xchip.in Exam Countdown - Track upcoming exams and remaining days.">
+    <title>Exams | xchip.in</title>
+    <!-- Google Fonts for Modern Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="container">
+        <header>
+            <div class="logo">xchip.in</div>
+            <h1>Govt. Exams Countdown</h1>
+            <p>Track your important dates for Central and State Government exams.</p>
+        </header>
+
+        <!-- Controls Bar -->
+        <div class="controls-bar">
+            <div class="search-wrapper">
+                <svg class="search-icon" viewBox="0 0 24 24">
+                    <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                </svg>
+                <input type="text" id="search-input" placeholder="Search for an exam...">
+            </div>
+            
+            <div class="filter-wrapper">
+                <select id="category-filter">
+                    <option value="all">All Exams</option>
+                    <option value="central">Central Government</option>
+                    <option value="state">State Government</option>
+                </select>
+            </div>
+            
+            <div class="view-options">
+                <button id="view-grid" class="view-btn" title="Grid View">
+                    <svg viewBox="0 0 24 24"><path d="M3 3h8v8H3zm0 10h8v8H3zM13 3h8v8h-8zm0 10h8v8h-8z"/></svg>
+                </button>
+                <button id="view-list" class="view-btn active" title="List View">
+                    <svg viewBox="0 0 24 24"><path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"/></svg>
+                </button>
+            </div>
+        </div>
+
+        <div id="dynamic-exams-container" class="layout-list">
+            <!-- Dynamically populated by JS (handles sections and grids) -->
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; <span id="current-year"></span> xchip.in. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

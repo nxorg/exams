@@ -1,0 +1,32 @@
+[
+    {
+        "id": "central-1",
+        "name": "IBPS PO (Prelims)",
+        "date": "2026-08-22T09:00:00",
+        "type": "central"
+    },
+    {
+        "id": "central-2",
+        "name": "UPSC Civil Services (Mains)",
+        "date": "2026-09-20T09:00:00",
+        "type": "central"
+    },
+    {
+        "id": "central-3",
+        "name": "IBPS PO (Mains)",
+        "date": "2026-10-04T09:30:00",
+        "type": "central"
+    },
+    {
+        "id": "central-4",
+        "name": "SSC MTS & Havaldar 2026",
+        "date": "2026-10-15T10:00:00",
+        "type": "central"
+    },
+    {
+        "id": "central-5",
+        "name": "RRB Officer Scale I Prelims",
+        "date": "2026-11-21T09:30:00",
+        "type": "central"
+    }
+]
