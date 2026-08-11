@@ -263,11 +263,21 @@ document.addEventListener('DOMContentLoaded', async () => {
     const gridBtn = document.getElementById('view-grid');
     const listBtn = document.getElementById('view-list');
 
+    // Load saved layout preference
+    const savedLayout = localStorage.getItem('preferredLayout') || 'grid';
+    if (savedLayout === 'list') {
+        listBtn.classList.add('active');
+        gridBtn.classList.remove('active');
+        container.classList.remove('layout-grid');
+        container.classList.add('layout-list');
+    }
+
     gridBtn.addEventListener('click', () => {
         gridBtn.classList.add('active');
         listBtn.classList.remove('active');
         container.classList.remove('layout-list');
         container.classList.add('layout-grid');
+        localStorage.setItem('preferredLayout', 'grid');
     });
 
     listBtn.addEventListener('click', () => {
@@ -275,6 +285,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         gridBtn.classList.remove('active');
         container.classList.remove('layout-grid');
         container.classList.add('layout-list');
+        localStorage.setItem('preferredLayout', 'list');
     });
 
     // Start live timer
