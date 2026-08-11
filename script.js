@@ -59,8 +59,8 @@ const generateExamsHTML = (examsList) => {
         
         // Include an indicator for Central vs State inside the card header
         const typeBadge = exam.type === 'central' 
-            ? `<span style="font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.05em; padding: 0.2rem 0.5rem; background: rgba(255, 69, 58, 0.15); color: var(--danger); border: 1px solid rgba(255, 69, 58, 0.3); border-radius: 4px; margin-left: 0.75rem; vertical-align: middle;">Central</span>` 
-            : `<span style="font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.05em; padding: 0.2rem 0.5rem; background: rgba(50, 215, 75, 0.15); color: var(--success); border: 1px solid rgba(50, 215, 75, 0.3); border-radius: 4px; margin-left: 0.75rem; vertical-align: middle;">${exam.stateName ? exam.stateName : 'State'}</span>`;
+            ? `<span style="font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.05em; padding: 0.2rem 0.5rem; background: rgba(255, 69, 58, 0.15); color: var(--danger); border: 1px solid rgba(255, 69, 58, 0.3); border-radius: 4px; vertical-align: middle; white-space: nowrap;">Central</span>` 
+            : `<span style="font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.05em; padding: 0.2rem 0.5rem; background: rgba(50, 215, 75, 0.15); color: var(--success); border: 1px solid rgba(50, 215, 75, 0.3); border-radius: 4px; vertical-align: middle; white-space: nowrap;">${exam.stateName ? exam.stateName : 'State'}</span>`;
 
         const isPinned = pinnedExams.has(exam.id);
         const pinClass = isPinned ? 'pinned' : '';
@@ -75,9 +75,13 @@ const generateExamsHTML = (examsList) => {
 
         return `
             <article class="exam-card ${statusClass} ${pinClass}" style="animation-delay: ${animationDelay}s" data-exam-id="${exam.id}" data-exam-date="${exam.date}">
-                <div class="card-left">
-                    <div class="exam-header">
-                        <h2 class="exam-title">${exam.name} ${typeBadge} ${pinIcon}</h2>
+                <div class="card-left" style="width: 100%;">
+                    <div class="exam-header" style="display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; width: 100%; margin-bottom: 0.5rem;">
+                        <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem;">
+                            <h2 class="exam-title" style="margin: 0; padding: 0;">${exam.name}</h2>
+                            ${typeBadge}
+                        </div>
+                        ${pinIcon}
                     </div>
                     
                     <div class="exam-date">
