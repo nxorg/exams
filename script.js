@@ -88,11 +88,13 @@ const generateExamsHTML = (examsList) => {
     `;
 };
 
+// Active filters store (empty means show all)
+let activeFilters = new Set();
+
 // Render exams based on filters
 const renderExams = () => {
     const container = document.getElementById('dynamic-exams-container');
     const searchQuery = document.getElementById('search-input').value.toLowerCase();
-    const categoryFilter = document.getElementById('category-filter').value;
     
     // Sort logic (Priority: Upcoming nearest first, then past exams)
     const sortLogic = (a, b) => {
@@ -104,17 +106,20 @@ const renderExams = () => {
         return !timeA.isPast ? -1 : 1;
     };
 
-    const stateFilterValue = document.getElementById('state-filter').value;
-    
     // Filter logic
     const filteredExams = exams.filter(exam => {
         const matchesSearch = exam.name.toLowerCase().includes(searchQuery);
-        const matchesCategory = categoryFilter === 'all' || exam.type === categoryFilter;
-        let matchesState = true;
-        if (categoryFilter === 'state' && stateFilterValue !== 'all') {
-            matchesState = exam.stateName === stateFilterValue;
+        let matchesCategory = true;
+        
+        if (activeFilters.size > 0) {
+            if (exam.type === 'central') {
+                matchesCategory = activeFilters.has('central');
+            } else if (exam.type === 'state') {
+                matchesCategory = activeFilters.has(exam.stateName);
+            }
         }
-        return matchesSearch && matchesCategory && matchesState;
+        
+        return matchesSearch && matchesCategory;
     });
 
     // Sort ALL filtered exams in a single list
@@ -135,8 +140,6 @@ const tickCountdown = () => {
 
         const timeObj = getRemainingTime(dateStr);
         if (timeObj.isPast) {
-            // Might need a full re-render if something passes, but a reload is rare.
-            // Just let it be handled on next reload/filter.
             return; 
         }
 
@@ -181,36 +184,48 @@ document.addEventListener('DOMContentLoaded', async () => {
         return; // Stop initialization if data fails to load
     }
 
-    // Populate state filter dynamically
-    const stateFilterSelect = document.getElementById('state-filter');
-    const stateFilterWrapper = document.getElementById('state-filter-wrapper');
-    const categoryFilterSelect = document.getElementById('category-filter');
+    // Populate filter chips dynamically
+    const chipsContainer = document.getElementById('filter-chips-container');
+    if (chipsContainer) {
+        // Add Central Govt chip
+        const centralChip = document.createElement('button');
+        centralChip.className = 'filter-chip';
+        centralChip.textContent = 'Central Govt';
+        centralChip.dataset.filterValue = 'central';
+        chipsContainer.appendChild(centralChip);
+        
+        // Add State chips
+        const uniqueStates = [...new Set(exams.filter(e => e.type === 'state' && e.stateName).map(e => e.stateName))];
+        uniqueStates.sort().forEach(stateName => {
+            const stateChip = document.createElement('button');
+            stateChip.className = 'filter-chip';
+            stateChip.textContent = stateName;
+            stateChip.dataset.filterValue = stateName;
+            chipsContainer.appendChild(stateChip);
+        });
 
-    const uniqueStates = [...new Set(exams.filter(e => e.type === 'state' && e.stateName).map(e => e.stateName))];
-    uniqueStates.sort().forEach(stateName => {
-        const option = document.createElement('option');
-        option.value = stateName;
-        option.textContent = stateName;
-        stateFilterSelect.appendChild(option);
-    });
+        // Add event listeners to chips
+        const chips = chipsContainer.querySelectorAll('.filter-chip');
+        chips.forEach(chip => {
+            chip.addEventListener('click', () => {
+                const val = chip.dataset.filterValue;
+                if (activeFilters.has(val)) {
+                    activeFilters.delete(val);
+                    chip.classList.remove('active');
+                } else {
+                    activeFilters.add(val);
+                    chip.classList.add('active');
+                }
+                renderExams();
+            });
+        });
+    }
 
     // Initial Render
     renderExams();
     
-    // Setup Event Listeners for search and filter
+    // Setup Event Listeners for search
     document.getElementById('search-input').addEventListener('input', renderExams);
-    
-    categoryFilterSelect.addEventListener('change', (e) => {
-        if (e.target.value === 'state') {
-            stateFilterWrapper.style.display = 'block';
-        } else {
-            stateFilterWrapper.style.display = 'none';
-            stateFilterSelect.value = 'all'; // reset state filter
-        }
-        renderExams();
-    });
-
-    stateFilterSelect.addEventListener('change', renderExams);
     
     // View toggles
     const gridBtn = document.getElementById('view-grid');
