@@ -75,13 +75,13 @@ const generateExamsHTML = (examsList) => {
 
         return `
             <article class="exam-card ${statusClass} ${pinClass}" style="animation-delay: ${animationDelay}s" data-exam-id="${exam.id}" data-exam-date="${exam.date}">
-                <div class="card-left" style="width: 100%;">
-                    <div class="exam-header" style="display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; width: 100%; margin-bottom: 0.5rem;">
-                        <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem;">
-                            <h2 class="exam-title" style="margin: 0; padding: 0;">${exam.name}</h2>
+                <div class="card-left">
+                    <div class="exam-header" style="margin-bottom: 0.5rem;">
+                        <h2 class="exam-title" style="display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem; margin: 0;">
+                            <span>${exam.name}</span>
                             ${typeBadge}
-                        </div>
-                        ${pinIcon}
+                            <span style="margin-left: auto;">${pinIcon}</span>
+                        </h2>
                     </div>
                     
                     <div class="exam-date">
