@@ -285,6 +285,34 @@ header p {
     font-weight: 600;
     letter-spacing: -0.02em;
     color: var(--text-primary);
+    display: flex;
+    align-items: center;
+}
+
+.pin-btn {
+    background: none;
+    border: none;
+    color: var(--border);
+    cursor: pointer;
+    margin-left: 0.5rem;
+    padding: 0.2rem;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+}
+
+.pin-btn:hover {
+    color: var(--text-secondary);
+    background: var(--bg-input);
+}
+
+.pin-btn.pinned {
+    color: var(--accent-blue);
+}
+
+.exam-card.pinned {
+    border-color: var(--accent-blue);
 }
 
 .exam-date {

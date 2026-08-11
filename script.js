@@ -1,5 +1,16 @@
 // Exam data will be populated dynamically from JSON files
 let exams = [];
+let pinnedExams = new Set(JSON.parse(localStorage.getItem('pinnedExams') || '[]'));
+
+window.togglePin = (examId) => {
+    if (pinnedExams.has(examId)) {
+        pinnedExams.delete(examId);
+    } else {
+        pinnedExams.add(examId);
+    }
+    localStorage.setItem('pinnedExams', JSON.stringify([...pinnedExams]));
+    renderExams();
+};
 
 // Helper to format date with time
 const formatDateTime = (dateString) => {
@@ -51,11 +62,17 @@ const generateExamsHTML = (examsList) => {
             ? `<span style="font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.05em; padding: 0.2rem 0.5rem; background: rgba(255, 69, 58, 0.15); color: var(--danger); border: 1px solid rgba(255, 69, 58, 0.3); border-radius: 4px; margin-left: 0.75rem; vertical-align: middle;">Central</span>` 
             : `<span style="font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.05em; padding: 0.2rem 0.5rem; background: rgba(50, 215, 75, 0.15); color: var(--success); border: 1px solid rgba(50, 215, 75, 0.3); border-radius: 4px; margin-left: 0.75rem; vertical-align: middle;">${exam.stateName ? exam.stateName : 'State'}</span>`;
 
+        const isPinned = pinnedExams.has(exam.id);
+        const pinClass = isPinned ? 'pinned' : '';
+        const pinIcon = `<button class="pin-btn ${pinClass}" onclick="togglePin('${exam.id}')" title="${isPinned ? 'Unpin' : 'Pin to top'}">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M16 12V4h1V2H7v2h1v8l-2 2v2h5.2v6h1.6v-6H18v-2l-2-2z"/></svg>
+        </button>`;
+
         return `
-            <article class="exam-card ${statusClass}" style="animation-delay: ${animationDelay}s" data-exam-id="${exam.id}" data-exam-date="${exam.date}">
+            <article class="exam-card ${statusClass} ${pinClass}" style="animation-delay: ${animationDelay}s" data-exam-id="${exam.id}" data-exam-date="${exam.date}">
                 <div class="card-left">
                     <div class="exam-header">
-                        <h2 class="exam-title">${exam.name} ${typeBadge}</h2>
+                        <h2 class="exam-title">${exam.name} ${typeBadge} ${pinIcon}</h2>
                     </div>
                     
                     <div class="exam-date">
@@ -96,8 +113,14 @@ const renderExams = () => {
     const container = document.getElementById('dynamic-exams-container');
     const searchQuery = document.getElementById('search-input').value.toLowerCase();
     
-    // Sort logic (Priority: Upcoming nearest first, then past exams)
+    // Sort logic (Priority: Pinned first, then Upcoming nearest first, then past exams)
     const sortLogic = (a, b) => {
+        const aPinned = pinnedExams.has(a.id);
+        const bPinned = pinnedExams.has(b.id);
+        
+        if (aPinned && !bPinned) return -1;
+        if (!aPinned && bPinned) return 1;
+
         const timeA = getRemainingTime(a.date);
         const timeB = getRemainingTime(b.date);
         
