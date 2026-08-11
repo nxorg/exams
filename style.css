@@ -398,10 +398,39 @@ header p {
     .layout-list .exam-card {
         flex-direction: column;
         align-items: flex-start;
-        gap: 1.5rem;
+        gap: 1.25rem;
     }
     
     .layout-list .countdown {
         gap: 1.5rem;
+        width: 100%;
+        justify-content: space-between;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 2rem;
+    }
+    
+    .search-wrapper {
+        min-width: 100%;
+    }
+    
+    .view-options {
+        width: 100%;
+        justify-content: flex-start;
+    }
+    
+    .footer {
+        padding: 15px 20px;
+    }
+    
+    .layout-list .countdown {
+        gap: 1rem;
+    }
+    
+    .time-box .num {
+        font-size: 1.25rem;
     }
 }
