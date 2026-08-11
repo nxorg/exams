@@ -12,6 +12,7 @@
     
     --accent: #ffffff;
     --accent-blue: #0070f3;
+    --accent-gold: #ffd700;
     
     --success: #32d74b;
     --warning: #ff9f0a;
@@ -307,13 +308,13 @@ header p {
 }
 
 .pin-btn.pinned {
-    color: var(--accent-blue);
-    background: rgba(0, 112, 243, 0.1);
-    border-color: rgba(0, 112, 243, 0.3);
+    color: var(--accent-gold);
+    background: rgba(255, 215, 0, 0.1);
+    border-color: rgba(255, 215, 0, 0.3);
 }
 
 .exam-card.pinned {
-    border-color: var(--accent-blue);
+    border-color: rgba(255, 215, 0, 0.5);
 }
 
 .exam-date {
