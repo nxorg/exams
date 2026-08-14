@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting to Apply Page... | xchip.in</title>
+    <!-- Google Fonts for Modern Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .redirect-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 3rem 2rem;
+            text-align: center;
+            max-width: 600px;
+            margin: 4rem auto;
+            animation: fadeIn 0.5s ease-out;
+        }
+        .redirect-box h1 {
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+        }
+        .redirect-box p {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.5;
+        }
+        .loader {
+            width: 48px;
+            height: 48px;
+            border: 4px solid var(--border);
+            border-bottom-color: var(--accent-blue);
+            border-radius: 50%;
+            display: inline-block;
+            box-sizing: border-box;
+            animation: rotation 1s linear infinite;
+            margin-bottom: 2rem;
+        }
+        @keyframes rotation {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <main class="container">
+        <header>
+            <div class="logo">xchip.in &nbsp;&bull;&nbsp; Manoj Kumar</div>
+        </header>
+
+        <div class="redirect-box" id="redirect-content">
+            <div class="loader"></div>
+            <h1>Redirecting...</h1>
+            <p>You are being securely redirected to the official application portal in <strong id="countdown-timer" style="color: var(--accent-blue); font-size: 1.1rem;">5</strong> seconds.</p>
+            <p>If you are not redirected automatically, <a id="manual-link" href="#" class="apply-btn" style="padding: 0.4rem 0.8rem; font-size: 0.75rem; margin-left: 0.5rem;">Click Here</a></p>
+        </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-meta">
+          <span>&copy; <span id="current-year"></span> <a href="https://manoj.xchip.in" target="_blank" rel="noopener noreferrer" class="footer-link">Manoj Kumar</a> &bull; <a href="https://www.xchip.in" target="_blank" rel="noopener noreferrer" class="footer-link">www.xchip.in</a> ENGINEERING TEAM</span>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+        
+        let targetUrl = null;
+        
+        // Read URL from hash fragment (#url=...) to safely bypass any browser query param stripping for local files
+        if (window.location.hash.startsWith('#url=')) {
+            targetUrl = decodeURIComponent(window.location.hash.substring(5));
+        } else if (window.location.search.includes('url=')) {
+            targetUrl = new URLSearchParams(window.location.search).get('url');
+        }
+        
+        const redirectBox = document.getElementById('redirect-content');
+        
+        if (targetUrl) {
+            // Validate URL to prevent open redirect vulnerabilities somewhat
+            try {
+                const parsedUrl = new URL(targetUrl);
+                if (['http:', 'https:'].includes(parsedUrl.protocol)) {
+                    document.getElementById('manual-link').href = targetUrl;
+                    
+                    let secondsLeft = 5;
+                    const timerElement = document.getElementById('countdown-timer');
+                    
+                    const countdown = setInterval(() => {
+                        secondsLeft--;
+                        timerElement.textContent = secondsLeft;
+                        
+                        if (secondsLeft <= 0) {
+                            clearInterval(countdown);
+                            window.location.href = targetUrl;
+                        }
+                    }, 1000); // Trigger every 1 second
+                } else {
+                    throw new Error("Invalid protocol");
+                }
+            } catch (e) {
+                redirectBox.innerHTML = `
+                    <h1 style="color: var(--danger)">Invalid URL</h1>
+                    <p>The URL provided for the application is not valid or unsafe.</p>
+                    <a href="./index.html" class="apply-btn">Go back to Home</a>
+                `;
+            }
+        } else {
+            redirectBox.innerHTML = `
+                <h1 style="color: var(--danger)">No URL Provided</h1>
+                <p>We couldn't find the application URL you are trying to reach.</p>
+                <a href="./index.html" class="apply-btn">Go back to Home</a>
+            `;
+        }
+    </script>
+</body>
+</html>
