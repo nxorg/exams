@@ -17,6 +17,7 @@ const options = {
     // Only deploy these specific files (ignores node_modules, scripts, etc.)
     src: [
         'index.html',
+        'apply.html',
         'style.css',
         'script.js',
         'data/**/*',
