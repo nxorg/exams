@@ -4,48 +4,69 @@
         "name": "Combined Technical Services (Diploma/ITI)",
         "date": "2026-09-20T10:00:00",
         "type": "state",
-        "stateName": "Tamil Nadu"
+        "stateName": "Tamil Nadu",
+        "applyStartDate": "2026-08-01T00:00:00",
+        "applyEndDate": "2026-08-30T23:59:59",
+        "applyLink": "https://www.tnpsc.gov.in/"
     },
     {
         "id": "state-2",
         "name": "TNPSC Group 1 (Prelims)",
         "date": "2026-09-27T09:30:00",
         "type": "state",
-        "stateName": "Tamil Nadu"
+        "stateName": "Tamil Nadu",
+        "applyStartDate": "2026-08-15T00:00:00",
+        "applyEndDate": "2026-09-10T23:59:59",
+        "applyLink": "https://www.tnpsc.gov.in"
     },
     {
         "id": "state-3",
         "name": "TNPSC Group 2 & 2A",
         "date": "2026-10-25T09:30:00",
         "type": "state",
-        "stateName": "Tamil Nadu"
+        "stateName": "Tamil Nadu",
+        "applyStartDate": "2026-09-01T00:00:00",
+        "applyEndDate": "2026-09-28T23:59:59",
+        "applyLink": "https://www.tnpsc.gov.in/"
     },
     {
         "id": "state-4",
         "name": "TNPSC Group 4",
         "date": "2026-12-20T10:00:00",
         "type": "state",
-        "stateName": "Tamil Nadu"
+        "stateName": "Tamil Nadu",
+        "applyStartDate": "2026-10-01T00:00:00",
+        "applyEndDate": "2026-11-15T23:59:59",
+        "applyLink": "https://www.tnpsc.gov.in"
     },
     {
         "id": "state-5",
         "name": "TNUSRB Police Constable",
         "date": "2026-12-15T10:00:00",
         "type": "state",
-        "stateName": "Tamil Nadu"
+        "stateName": "Tamil Nadu",
+        "applyStartDate": "2026-10-15T00:00:00",
+        "applyEndDate": "2026-11-20T23:59:59",
+        "applyLink": "https://tnusrb.tn.gov.in"
     },
     {
         "id": "state-6",
         "name": "TNUSRB Sub-Inspector (Technical)",
         "date": "2027-02-15T09:00:00",
         "type": "state",
-        "stateName": "Tamil Nadu"
+        "stateName": "Tamil Nadu",
+        "applyStartDate": "2026-12-01T00:00:00",
+        "applyEndDate": "2026-12-31T23:59:59",
+        "applyLink": "https://tnusrb.tn.gov.in/"
     },
     {
         "id": "state-7",
         "name": "TNUSRB Band Police Constable",
         "date": "2027-03-10T09:00:00",
         "type": "state",
-        "stateName": "Tamil Nadu"
+        "stateName": "Tamil Nadu",
+        "applyStartDate": "2027-01-05T00:00:00",
+        "applyEndDate": "2027-02-05T23:59:59",
+        "applyLink": "https://tnusrb.tn.gov.in"
     }
 ]

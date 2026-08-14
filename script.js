@@ -1,6 +1,7 @@
 // Exam data will be populated dynamically from JSON files
 let exams = [];
 let pinnedExams = new Set(JSON.parse(localStorage.getItem('pinnedExams') || '[]'));
+let appliedExams = new Set(JSON.parse(localStorage.getItem('appliedExams') || '[]'));
 
 window.togglePin = (examId) => {
     if (pinnedExams.has(examId)) {
@@ -12,11 +13,27 @@ window.togglePin = (examId) => {
     renderExams();
 };
 
+window.toggleApplied = (examId) => {
+    if (appliedExams.has(examId)) {
+        appliedExams.delete(examId);
+    } else {
+        appliedExams.add(examId);
+    }
+    localStorage.setItem('appliedExams', JSON.stringify([...appliedExams]));
+    renderExams();
+};
+
 // Helper to format date with time
 const formatDateTime = (dateString) => {
     const options = { weekday: 'short', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
     const date = new Date(dateString);
     return date.toLocaleString('en-US', options);
+};
+
+const formatDateOnly = (dateString) => {
+    const options = { year: 'numeric', month: 'short', day: 'numeric' };
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', options);
 };
 
 // Calculate exact remaining time
@@ -56,6 +73,7 @@ const generateExamsHTML = (examsList) => {
         const timeObj = getRemainingTime(exam.date);
         const statusClass = getStatusClass(timeObj);
         const animationDelay = index * 0.1;
+        const isApplyClosed = exam.applyEndDate ? new Date(exam.applyEndDate).getTime() < new Date().getTime() : false;
         
         // Include an indicator for Central vs State inside the card header
         const typeBadge = exam.type === 'central' 
@@ -63,6 +81,7 @@ const generateExamsHTML = (examsList) => {
             : `<span style="font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.05em; padding: 0.2rem 0.5rem; background: rgba(50, 215, 75, 0.15); color: var(--success); border: 1px solid rgba(50, 215, 75, 0.3); border-radius: 4px; vertical-align: middle; white-space: nowrap;">${exam.stateName ? exam.stateName : 'State'}</span>`;
 
         const isPinned = pinnedExams.has(exam.id);
+        const isApplied = appliedExams.has(exam.id);
         const pinClass = isPinned ? 'pinned' : '';
         // Unpinned: Outline icon. Pinned: Filled icon.
         const pinIconSVG = isPinned 
@@ -90,6 +109,39 @@ const generateExamsHTML = (examsList) => {
                         </svg>
                         ${formatDateTime(exam.date)}
                     </div>
+
+                    ${(exam.applyStartDate || exam.applyEndDate || exam.applyLink) ? `
+                    <div class="apply-info">
+                        ${(exam.applyStartDate || exam.applyEndDate) ? `
+                        <div class="apply-dates">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                                <path d="M14 11h-2v-2h2v2zm-4 0H8v-2h2v2zm4-4h-2V5h2v2zm-4 0H8V5h2v2zm4 8h-2v-2h2v2zm-4 0H8v-2h2v2zM19 3h-1V1h-2v2H8V1H6v2H5c-1.1 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V9h14v10z"/>
+                            </svg>
+                            <span><strong>Apply:</strong> ${exam.applyStartDate ? formatDateTime(exam.applyStartDate) : '?'} &nbsp;&mdash;&nbsp; ${exam.applyEndDate ? formatDateTime(exam.applyEndDate) : '?'}</span>
+                        </div>
+                        ` : ''}
+                        ${exam.applyLink ? `
+                        <div style="display: flex; gap: 0.5rem; margin-top: 0.25rem; flex-wrap: wrap;">
+                            ${isApplied ? `
+                                <button onclick="toggleApplied('${exam.id}')" class="apply-btn applied-badge">
+                                    <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" style="margin-right: 0.4rem; vertical-align: text-bottom;"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+                                    Applied
+                                </button>
+                            ` : (isApplyClosed ? `
+                                <span class="apply-btn disabled">Application Closed</span>
+                                <button onclick="toggleApplied('${exam.id}')" class="apply-btn mark-applied-btn" title="I already applied">
+                                    <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+                                </button>
+                            ` : `
+                                <a href="./apply.html#url=${encodeURIComponent(exam.applyLink)}" class="apply-btn">Apply Now</a>
+                                <button onclick="toggleApplied('${exam.id}')" class="apply-btn mark-applied-btn" title="Mark as applied">
+                                    <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+                                </button>
+                            `)}
+                        </div>
+                        ` : ''}
+                    </div>
+                    ` : ''}
                 </div>
                 
                 <div class="countdown">
@@ -140,7 +192,14 @@ const renderExams = () => {
 
     // Filter logic
     const filteredExams = exams.filter(exam => {
-        const matchesSearch = exam.name.toLowerCase().includes(searchQuery);
+        const searchStr = searchQuery.trim();
+        const matchesSearch = !searchStr || (
+            (exam.name && exam.name.toLowerCase().includes(searchStr)) ||
+            (exam.applyLink && exam.applyLink.toLowerCase().includes(searchStr)) ||
+            (exam.date && formatDateTime(exam.date).toLowerCase().includes(searchStr)) ||
+            (exam.applyStartDate && formatDateOnly(exam.applyStartDate).toLowerCase().includes(searchStr)) ||
+            (exam.applyEndDate && formatDateOnly(exam.applyEndDate).toLowerCase().includes(searchStr))
+        );
         let matchesCategory = true;
         
         if (activeFilters.size > 0) {
