@@ -7,7 +7,8 @@
         "stateName": "Tamil Nadu",
         "applyStartDate": "2026-07-17T00:00:00",
         "applyEndDate": "2026-08-15T23:59:59",
-        "applyLink": "https://www.tnpsc.gov.in/"
+        "applyLink": "https://www.tnpsc.gov.in/",
+        "hallTicketLink": "https://www.tnpsc.gov.in/English/hall_ticket_download.aspx"
     },
     {
         "id": "state-2",
