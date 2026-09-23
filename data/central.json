@@ -43,5 +43,259 @@
         "applyStartDate": "2026-09-15T00:00:00",
         "applyEndDate": "2026-10-15T23:59:59",
         "applyLink": "https://www.ibps.in"
+    },
+    {
+        "id": "central-6",
+        "name": "SBI PO (Prelims)",
+        "date": "2026-09-10T09:30:00",
+        "type": "central",
+        "applyStartDate": "2026-07-15T00:00:00",
+        "applyEndDate": "2026-08-15T23:59:59",
+        "applyLink": "https://www.sbi.co.in"
+    },
+    {
+        "id": "central-7",
+        "name": "RBI Grade B (Prelims)",
+        "date": "2026-12-01T09:30:00",
+        "type": "central",
+        "applyStartDate": "2026-09-01T00:00:00",
+        "applyEndDate": "2026-09-30T23:59:59",
+        "applyLink": "https://www.rbi.org.in"
+    }
+    ,
+    {
+        "id": "central-8",
+        "name": "SBI PO (Prelims) – Session 1",
+        "date": "2026-08-01T09:30:00",
+        "type": "central",
+        "applyStartDate": "2026-06-18T00:00:00",
+        "applyEndDate": "2026-07-08T23:59:59",
+        "applyLink": "https://www.sbi.co.in"
+    },
+    {
+        "id": "central-9",
+        "name": "SBI PO (Prelims) – Session 2",
+        "date": "2026-08-02T09:30:00",
+        "type": "central",
+        "applyStartDate": "2026-06-18T00:00:00",
+        "applyEndDate": "2026-07-08T23:59:59",
+        "applyLink": "https://www.sbi.co.in"
+    },
+    {
+        "id": "central-10",
+        "name": "SBI PO (Mains)",
+        "date": "2026-09-12T09:30:00",
+        "type": "central",
+        "applyStartDate": "2026-06-18T00:00:00",
+        "applyEndDate": "2026-07-08T23:59:59",
+        "applyLink": "https://www.sbi.co.in"
+    },
+    {
+        "id": "central-11",
+        "name": "IBPS PO (Prelims) – Day 1",
+        "date": "2026-08-22T09:30:00",
+        "type": "central",
+        "applyStartDate": "2026-07-01T00:00:00",
+        "applyEndDate": "2026-07-26T23:59:59",
+        "applyLink": "https://www.ibps.in"
+    },
+    {
+        "id": "central-12",
+        "name": "IBPS PO (Prelims) – Day 2",
+        "date": "2026-08-23T09:30:00",
+        "type": "central",
+        "applyStartDate": "2026-07-01T00:00:00",
+        "applyEndDate": "2026-07-26T23:59:59",
+        "applyLink": "https://www.ibps.in"
+    },
+    {
+        "id": "central-13",
+        "name": "IBPS PO (Mains)",
+        "date": "2026-10-04T09:30:00",
+        "type": "central",
+        "applyStartDate": "2026-07-01T00:00:00",
+        "applyEndDate": "2026-07-26T23:59:59",
+        "applyLink": "https://www.ibps.in"
+    },
+    {
+        "id": "central-14",
+        "name": "IBPS SO (Prelims)",
+        "date": "2026-08-29T09:30:00",
+        "type": "central",
+        "applyStartDate": "2026-07-01T00:00:00",
+        "applyEndDate": "2026-07-26T23:59:59",
+        "applyLink": "https://www.ibps.in"
+    },
+    {
+        "id": "central-15",
+        "name": "IBPS SO (Mains)",
+        "date": "2026-11-01T09:30:00",
+        "type": "central",
+        "applyStartDate": "2026-07-01T00:00:00",
+        "applyEndDate": "2026-07-26T23:59:59",
+        "applyLink": "https://www.ibps.in"
+    },
+    {
+        "id": "central-16",
+        "name": "IBPS RRB PO (Prelims) – Session 1",
+        "date": "2026-11-21T09:30:00",
+        "type": "central",
+        "applyStartDate": "2026-09-01T00:00:00",
+        "applyEndDate": "2026-09-30T23:59:59",
+        "applyLink": "https://www.ibps.in"
+    },
+    {
+        "id": "central-17",
+        "name": "IBPS RRB PO (Prelims) – Session 2",
+        "date": "2026-11-22T09:30:00",
+        "type": "central",
+        "applyStartDate": "2026-09-01T00:00:00",
+        "applyEndDate": "2026-09-30T23:59:59",
+        "applyLink": "https://www.ibps.in"
+    },
+    {
+        "id": "central-18",
+        "name": "IBPS RRB Clerk (Prelims) – Session 1",
+        "date": "2026-12-06T09:30:00",
+        "type": "central",
+        "applyStartDate": "2026-09-01T00:00:00",
+        "applyEndDate": "2026-09-30T23:59:59",
+        "applyLink": "https://www.ibps.in"
+    },
+    {
+        "id": "central-19",
+        "name": "IBPS RRB Clerk (Prelims) – Session 2",
+        "date": "2026-12-12T09:30:00",
+        "type": "central",
+        "applyStartDate": "2026-09-01T00:00:00",
+        "applyEndDate": "2026-09-30T23:59:59",
+        "applyLink": "https://www.ibps.in"
+    },
+    {
+        "id": "central-20",
+        "name": "IBPS RRB PO (Mains)",
+        "date": "2026-12-27T09:30:00",
+        "type": "central",
+        "applyStartDate": "2026-09-01T00:00:00",
+        "applyEndDate": "2026-09-30T23:59:59",
+        "applyLink": "https://www.ibps.in"
+    },
+    {
+        "id": "central-21",
+        "name": "IBPS RRB Clerk (Mains)",
+        "date": "2027-01-30T09:30:00",
+        "type": "central",
+        "applyStartDate": "2026-09-01T00:00:00",
+        "applyEndDate": "2026-09-30T23:59:59",
+        "applyLink": "https://www.ibps.in"
+    },
+    {
+        "id": "central-22",
+        "name": "IBPS Clerk (Prelims) – Day 1",
+        "date": "2026-10-10T09:30:00",
+        "type": "central",
+        "applyStartDate": "2026-08-01T00:00:00",
+        "applyEndDate": "2026-08-21T23:59:59",
+        "applyLink": "https://www.ibps.in"
+    },
+    {
+        "id": "central-23",
+        "name": "IBPS Clerk (Prelims) – Day 2",
+        "date": "2026-10-11T09:30:00",
+        "type": "central",
+        "applyStartDate": "2026-08-01T00:00:00",
+        "applyEndDate": "2026-08-21T23:59:59",
+        "applyLink": "https://www.ibps.in"
+    },
+    {
+        "id": "central-24",
+        "name": "IBPS Clerk (Mains)",
+        "date": "2026-12-27T09:30:00",
+        "type": "central",
+        "applyStartDate": "2026-08-01T00:00:00",
+        "applyEndDate": "2026-08-21T23:59:59",
+        "applyLink": "https://www.ibps.in"
+    },
+    {
+        "id": "central-25",
+        "name": "SBI Clerk (Online)",
+        "date": "2026-08-31T09:30:00",
+        "type": "central",
+        "applyStartDate": "2026-08-11T00:00:00",
+        "applyEndDate": "2026-08-31T23:59:59",
+        "applyLink": "https://www.sbi.co.in"
+    },
+    {
+        "id": "central-26",
+        "name": "SBI Apprentice (Online)",
+        "date": "2026-07-11T09:30:00",
+        "type": "central",
+        "applyStartDate": "2026-05-19T00:00:00",
+        "applyEndDate": "2026-06-08T23:59:59",
+        "applyLink": "https://www.sbi.co.in"
+    },
+    {
+        "id": "central-27",
+        "name": "Union Bank Apprentice 2026",
+        "date": "2026-06-07T09:30:00",
+        "type": "central",
+        "applyStartDate": "2026-04-29T00:00:00",
+        "applyEndDate": "2026-05-19T23:59:59",
+        "applyLink": "https://www.unionbankofindia.co.in"
+    },
+    {
+        "id": "central-28",
+        "name": "LIC HFL Junior Assistant 2026",
+        "date": "2026-06-06T09:30:00",
+        "type": "central",
+        "applyStartDate": "2026-04-16T00:00:00",
+        "applyEndDate": "2026-04-30T23:59:59",
+        "applyLink": "https://www.lichfl.com"
+    },
+    {
+        "id": "central-29",
+        "name": "Punjab and Sind LBO 2026",
+        "date": "2026-05-10T09:30:00",
+        "type": "central",
+        "applyStartDate": "2026-03-31T00:00:00",
+        "applyEndDate": "2026-04-20T23:59:59",
+        "applyLink": "https://www.punjabandsindbank.com"
+    },
+    {
+        "id": "central-30",
+        "name": "RBI Assistant 2026",
+        "date": "2026-04-11T09:30:00",
+        "type": "central",
+        "applyStartDate": "2026-02-16T00:00:00",
+        "applyEndDate": "2026-03-10T23:59:59",
+        "applyLink": "https://www.rbi.org.in"
+    },
+    {
+        "id": "central-31",
+        "name": "IDBI Junior Assistant Manager Recruitment 2026",
+        "date": "2026-04-12T09:30:00",
+        "type": "central",
+        "applyStartDate": "2026-03-08T00:00:00",
+        "applyEndDate": "2026-03-19T23:59:59",
+        "applyLink": "https://www.idbi.com"
+    },
+    {
+        "id": "central-32",
+        "name": "JAIIB 2026",
+        "date": "2026-11-01T09:30:00",
+        "type": "central",
+        "applyStartDate": "2026-08-10T00:00:00",
+        "applyEndDate": "2026-08-31T23:59:59",
+        "applyLink": "https://www.jaiib.com"
+    },
+    {
+        "id": "central-33",
+        "name": "CAIIB 2026",
+        "date": "2026-12-06T09:30:00",
+        "type": "central",
+        "applyStartDate": "2026-09-01T00:00:00",
+        "applyEndDate": "2026-09-21T23:59:59",
+        "applyLink": "https://www.caiib.com"
     }
 ]
+

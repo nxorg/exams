@@ -2,11 +2,11 @@
     {
         "id": "state-1",
         "name": "Combined Technical Services (Diploma/ITI)",
-        "date": "2026-09-20T10:00:00",
+        "date": "2026-11-15T10:00:00",
         "type": "state",
         "stateName": "Tamil Nadu",
-        "applyStartDate": "2026-08-01T00:00:00",
-        "applyEndDate": "2026-08-30T23:59:59",
+        "applyStartDate": "2026-07-17T00:00:00",
+        "applyEndDate": "2026-08-15T23:59:59",
         "applyLink": "https://www.tnpsc.gov.in/"
     },
     {
@@ -22,7 +22,7 @@
     {
         "id": "state-3",
         "name": "TNPSC Group 2 & 2A",
-        "date": "2026-10-25T09:30:00",
+        "date": "2026-11-01T09:30:00",
         "type": "state",
         "stateName": "Tamil Nadu",
         "applyStartDate": "2026-09-01T00:00:00",
