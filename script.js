@@ -110,7 +110,7 @@ const generateExamsHTML = (examsList) => {
                         ${formatDateTime(exam.date)}
                     </div>
 
-                    ${(exam.applyStartDate || exam.applyEndDate || exam.applyLink) ? `
+                    ${(exam.applyStartDate || exam.applyEndDate || exam.applyLink || exam.hallTicketLink) ? `
                     <div class="apply-info">
                         ${(exam.applyStartDate || exam.applyEndDate) ? `
                         <div class="apply-dates">
@@ -120,24 +120,32 @@ const generateExamsHTML = (examsList) => {
                             <span><strong>Apply:</strong> ${exam.applyStartDate ? formatDateTime(exam.applyStartDate) : '?'} &nbsp;&mdash;&nbsp; ${exam.applyEndDate ? formatDateTime(exam.applyEndDate) : '?'}</span>
                         </div>
                         ` : ''}
-                        ${exam.applyLink ? `
+                        ${(exam.applyLink || exam.hallTicketLink) ? `
                         <div style="display: flex; gap: 0.5rem; margin-top: 0.25rem; flex-wrap: wrap;">
-                            ${isApplied ? `
-                                <button onclick="toggleApplied('${exam.id}')" class="apply-btn applied-badge">
-                                    <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" style="margin-right: 0.4rem; vertical-align: text-bottom;"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
-                                    Applied
-                                </button>
-                            ` : (isApplyClosed ? `
-                                <span class="apply-btn disabled">Application Closed</span>
-                                <button onclick="toggleApplied('${exam.id}')" class="apply-btn mark-applied-btn" title="I already applied">
-                                    <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
-                                </button>
-                            ` : `
-                                <a href="./apply.html#url=${encodeURIComponent(exam.applyLink)}" class="apply-btn">Apply Now</a>
-                                <button onclick="toggleApplied('${exam.id}')" class="apply-btn mark-applied-btn" title="Mark as applied">
-                                    <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
-                                </button>
-                            `)}
+                            ${exam.applyLink ? `
+                                ${isApplied ? `
+                                    <button onclick="toggleApplied('${exam.id}')" class="apply-btn applied-badge">
+                                        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" style="margin-right: 0.4rem; vertical-align: text-bottom;"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+                                        Applied
+                                    </button>
+                                ` : (isApplyClosed ? `
+                                    <span class="apply-btn disabled">Application Closed</span>
+                                    <button onclick="toggleApplied('${exam.id}')" class="apply-btn mark-applied-btn" title="I already applied">
+                                        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+                                    </button>
+                                ` : `
+                                    <a href="./apply.html#url=${encodeURIComponent(exam.applyLink)}" class="apply-btn">Apply Now</a>
+                                    <button onclick="toggleApplied('${exam.id}')" class="apply-btn mark-applied-btn" title="Mark as applied">
+                                        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+                                    </button>
+                                `)}
+                            ` : ''}
+                            ${exam.hallTicketLink ? `
+                                <a href="${exam.hallTicketLink}" target="_blank" class="apply-btn" style="background-color: var(--secondary-color); color: white;">
+                                    <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" style="margin-right: 0.4rem; vertical-align: text-bottom;"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                                    Hall Ticket
+                                </a>
+                            ` : ''}
                         </div>
                         ` : ''}
                     </div>
